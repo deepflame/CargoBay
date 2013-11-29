@@ -1096,12 +1096,12 @@ restoreCompletedTransactionsFailedWithError:(NSError *)error
 - (void)request:(__unused SKRequest *)request
 didFailWithError:(NSError *)error
 {
-#if !__has_feature(objc_arc_weak)
-    [[self class] unregisterDelegate:self];
-#endif
     if (self.failure) {
         self.failure(error);
     }    
+#if !__has_feature(objc_arc_weak)
+    [[self class] unregisterDelegate:self];
+#endif
 }
 
 - (void)requestDidFinish:(__unused SKRequest *)request {
